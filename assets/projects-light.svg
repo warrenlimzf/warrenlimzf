@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="508" viewBox="0 0 1000 508" role="img" aria-label="Six projects Warren has built">
+  <title>Things I have built</title>
+  <defs>
+    <linearGradient id="bgl" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FBF8F1"/><stop offset="1" stop-color="#F0E8D8"/>
+    </linearGradient>
+    <filter id="blurl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="55"/></filter>
+    <clipPath id="framel"><rect width="1000" height="508" rx="22"/></clipPath>
+  </defs>
+  <g clip-path="url(#framel)">
+    <rect width="1000" height="508" fill="url(#bgl)"/>
+    <g filter="url(#blurl)" opacity="0.9">
+      <circle cx="780" cy="127" r="170" fill="#E8D3A6">
+        <animateTransform attributeName="transform" type="translate" values="0 0;-60 40;0 0" dur="18s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="180" cy="432" r="190" fill="#C9D5EC">
+        <animateTransform attributeName="transform" type="translate" values="0 0;70 -30;0 0" dur="22s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </g>
+  <rect x="0.5" y="0.5" width="999" height="507" rx="22" fill="none" stroke="#14213D" stroke-opacity="0.1"/>
+  <text x="44" y="66" font-family="Georgia, 'Times New Roman', serif" font-size="28" fill="#14213D">Things I have built</text>
+  <text x="44" y="92" font-family="Georgia, 'Times New Roman', serif" font-size="14.5" font-style="italic" fill="#5B6478">Most of these repos are private. The live work sits on warrenlimzf.com.</text>
+  <g opacity="0">
+    <set attributeName="opacity" to="1" begin="0.20s" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" values="0 10;0 0" begin="0.20s" dur="0.5s" fill="freeze"/>
+    <rect x="42" y="112" width="296" height="168" rx="14" fill="#FFFFFF" fill-opacity="0.58" stroke="#14213D" stroke-opacity="0.1"/>
+    <text x="64" y="146" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" fill="#A8843F">01</text>
+    <text x="64" y="178" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#14213D">Macro research site</text>
+    <text x="64" y="208" font-family="Georgia, 'Times New Roman', serif" font-size="14.5" fill="#5B6478"><tspan x="64" dy="0">US macro indicators with live FRED</tspan><tspan x="64" dy="20">charts, plus company research</tspan></text>
+    <line x1="64" x2="316" y1="240" y2="240" stroke="#14213D" stroke-opacity="0.1"/>
+    <text x="64" y="262" font-family="Georgia, 'Times New Roman', serif" font-size="11" letter-spacing="1.6" fill="#A8843F">NEXT.JS · RESEARCH</text>
+  </g><g opacity="0">
+    <set attributeName="opacity" to="1" begin="0.32s" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" values="0 10;0 0" begin="0.32s" dur="0.5s" fill="freeze"/>
+    <rect x="358" y="112" width="296" height="168" rx="14" fill="#FFFFFF" fill-opacity="0.58" stroke="#14213D" stroke-opacity="0.1"/>
+    <text x="380" y="146" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" fill="#A8843F">02</text>
+    <text x="380" y="178" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#14213D">Market dashboard</text>
+    <text x="380" y="208" font-family="Georgia, 'Times New Roman', serif" font-size="14.5" fill="#5B6478"><tspan x="380" dy="0">A US market report for each trading</tspan><tspan x="380" dy="20">day, with the tape and the movers</tspan></text>
+    <line x1="380" x2="632" y1="240" y2="240" stroke="#14213D" stroke-opacity="0.1"/>
+    <text x="380" y="262" font-family="Georgia, 'Times New Roman', serif" font-size="11" letter-spacing="1.6" fill="#A8843F">TYPESCRIPT · DATA</text>
+  </g><g opacity="0">
+    <set attributeName="opacity" to="1" begin="0.44s" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" values="0 10;0 0" begin="0.44s" dur="0.5s" fill="freeze"/>
+    <rect x="674" y="112" width="296" height="168" rx="14" fill="#FFFFFF" fill-opacity="0.58" stroke="#14213D" stroke-opacity="0.1"/>
+    <text x="696" y="146" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" fill="#A8843F">03</text>
+    <text x="696" y="178" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#14213D">Trading journal</text>
+    <text x="696" y="208" font-family="Georgia, 'Times New Roman', serif" font-size="14.5" fill="#5B6478"><tspan x="696" dy="0">Every trade logged and reviewed,</tspan><tspan x="696" dy="20">embedded in my personal site</tspan></text>
+    <line x1="696" x2="948" y1="240" y2="240" stroke="#14213D" stroke-opacity="0.1"/>
+    <text x="696" y="262" font-family="Georgia, 'Times New Roman', serif" font-size="11" letter-spacing="1.6" fill="#A8843F">TYPESCRIPT · REVIEW</text>
+  </g><g opacity="0">
+    <set attributeName="opacity" to="1" begin="0.56s" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" values="0 10;0 0" begin="0.56s" dur="0.5s" fill="freeze"/>
+    <rect x="42" y="300" width="296" height="168" rx="14" fill="#FFFFFF" fill-opacity="0.58" stroke="#14213D" stroke-opacity="0.1"/>
+    <text x="64" y="334" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" fill="#A8843F">04</text>
+    <text x="64" y="366" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#14213D">VCP strategy desk</text>
+    <text x="64" y="396" font-family="Georgia, 'Times New Roman', serif" font-size="14.5" fill="#5B6478"><tspan x="64" dy="0">Swing-trading rulebook tested on a</tspan><tspan x="64" dy="20">pre-registered out-of-sample run</tspan></text>
+    <line x1="64" x2="316" y1="428" y2="428" stroke="#14213D" stroke-opacity="0.1"/>
+    <text x="64" y="450" font-family="Georgia, 'Times New Roman', serif" font-size="11" letter-spacing="1.6" fill="#A8843F">PYTHON · BACKTESTING</text>
+  </g><g opacity="0">
+    <set attributeName="opacity" to="1" begin="0.68s" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" values="0 10;0 0" begin="0.68s" dur="0.5s" fill="freeze"/>
+    <rect x="358" y="300" width="296" height="168" rx="14" fill="#FFFFFF" fill-opacity="0.58" stroke="#14213D" stroke-opacity="0.1"/>
+    <text x="380" y="334" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" fill="#A8843F">05</text>
+    <text x="380" y="366" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#14213D">Bank NAV automation</text>
+    <text x="380" y="396" font-family="Georgia, 'Times New Roman', serif" font-size="14.5" fill="#5B6478"><tspan x="380" dy="0">Reads LGT, BoS and UBS statements</tspan><tspan x="380" dy="20">into Excel, each figure screenshotted</tspan></text>
+    <line x1="380" x2="632" y1="428" y2="428" stroke="#14213D" stroke-opacity="0.1"/>
+    <text x="380" y="450" font-family="Georgia, 'Times New Roman', serif" font-size="11" letter-spacing="1.6" fill="#A8843F">PYTHON · OCR · OPEN SOURCE</text>
+  </g><g opacity="0">
+    <set attributeName="opacity" to="1" begin="0.80s" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" values="0 10;0 0" begin="0.80s" dur="0.5s" fill="freeze"/>
+    <rect x="674" y="300" width="296" height="168" rx="14" fill="#FFFFFF" fill-opacity="0.58" stroke="#14213D" stroke-opacity="0.1"/>
+    <text x="696" y="334" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" fill="#A8843F">06</text>
+    <text x="696" y="366" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#14213D">Web design skill</text>
+    <text x="696" y="396" font-family="Georgia, 'Times New Roman', serif" font-size="14.5" fill="#5B6478"><tspan x="696" dy="0">A Claude Code skill that keeps my</tspan><tspan x="696" dy="20">sites from looking machine-made</tspan></text>
+    <line x1="696" x2="948" y1="428" y2="428" stroke="#14213D" stroke-opacity="0.1"/>
+    <text x="696" y="450" font-family="Georgia, 'Times New Roman', serif" font-size="11" letter-spacing="1.6" fill="#A8843F">CLAUDE CODE · DESIGN</text>
+  </g>
+</svg>
