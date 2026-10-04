@@ -88,31 +88,43 @@ HOLD_T = 4.4      # phrase disappears at this point in its slot
 
 
 def typing(t, x, y):
+    """Cycles the phrases. The clock is shifted so t=0 (and any renderer that
+    ignores animation) shows the first phrase fully typed, never a blank line."""
     total = SLOT * len(PHRASES)
-    defs, texts, cursor_frames = [], [], []
+    step = 0.05
+
+    def width(i, now):
+        local = (now + TYPE_T) % total - i * SLOT
+        n = len(PHRASES[i])
+        if 0 <= local < TYPE_T:
+            return int(local / TYPE_T * n) * CHAR_W
+        return n * CHAR_W if TYPE_T <= local < HOLD_T else 0
+
+    def frames(fn):
+        out, last = [], None
+        for k in range(int(total / step)):
+            v = fn(k * step)
+            if v != last:
+                out.append((k * step, v))
+                last = v
+        return out
+
+    def animate(attr, fr, fmt):
+        kt = ";".join(f"{f[0] / total:.4f}" for f in fr)
+        vals = ";".join(fmt(f[1]) for f in fr)
+        return (f'<animate attributeName="{attr}" calcMode="discrete" dur="{total}s" '
+                f'repeatCount="indefinite" keyTimes="{kt}" values="{vals}"/>')
+
+    defs, texts = [], []
     for i, p in enumerate(PHRASES):
-        start = i * SLOT
-        frames = [(0.0, 0)]
-        n = len(p)
-        for c in range(1, n + 1):
-            frames.append((start + TYPE_T * c / n, c * CHAR_W))
-        frames.append((start + HOLD_T, 0))
-        frames = sorted({f[0]: f for f in frames}.values())
-        kt = ";".join(f"{f[0] / total:.4f}" for f in frames)
-        vals = ";".join(f"{f[1]:.1f}" for f in frames)
-        defs.append(
-            f'<clipPath id="tc{i}"><rect x="{x}" y="{y - 22}" height="30" width="0">'
-            f'<animate attributeName="width" calcMode="discrete" dur="{total}s" repeatCount="indefinite" '
-            f'keyTimes="{kt}" values="{vals}"/></rect></clipPath>')
+        fr = frames(lambda now, i=i: width(i, now))
+        defs.append(f'<clipPath id="tc{i}"><rect x="{x}" y="{y - 22}" height="30" width="{width(i, 0):.1f}">'
+                    f'{animate("width", fr, lambda v: f"{v:.1f}")}</rect></clipPath>')
         texts.append(f'<text x="{x}" y="{y}" clip-path="url(#tc{i})" font-family="{SERIF}" font-size="19" '
                      f'fill="{t["ink"]}">{escape(p)}</text>')
-        cursor_frames += frames[1:]
-    cursor_frames = [(0.0, 0)] + sorted(cursor_frames)
-    cursor_frames = sorted({f[0]: f for f in cursor_frames}.values())
-    kt = ";".join(f"{f[0] / total:.4f}" for f in cursor_frames)
-    vals = ";".join(f"{x + f[1] + 3:.1f}" for f in cursor_frames)
-    cursor = (f'<rect y="{y - 17}" width="2" height="22" fill="{t["accent"]}" x="{x + 3}">'
-              f'<animate attributeName="x" calcMode="discrete" dur="{total}s" repeatCount="indefinite" keyTimes="{kt}" values="{vals}"/>'
+    cur = lambda now: max(width(i, now) for i in range(len(PHRASES)))
+    cursor = (f'<rect y="{y - 17}" width="2" height="22" fill="{t["accent"]}" x="{x + cur(0) + 3:.1f}">'
+              f'{animate("x", frames(cur), lambda v: f"{x + v + 3:.1f}")}'
               f'<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1s" repeatCount="indefinite"/></rect>')
     return "".join(defs), "".join(texts) + cursor
 
@@ -148,8 +160,7 @@ def ascii_chart(t, x0, y0, cols=24, rows=15, dx=14, dy=15.5):
         anim = (f'<animate attributeName="opacity" values="1;0.3;1" dur="1.6s" begin="{0.25 + i * 0.09:.2f}s" repeatCount="indefinite"/>'
                 if last else "")
         parts.append(
-            f'<text font-family="{MONO}" font-size="14" fill="{fill}" opacity="0">{"".join(chars)}'
-            f'<set attributeName="opacity" to="1" begin="{0.25 + i * 0.09:.2f}s" fill="freeze"/>{anim}</text>')
+            f'<text font-family="{MONO}" font-size="14" fill="{fill}">{"".join(chars)}{anim}</text>')
     last_close_y = y0 + row(data[-1][3]) * dy - 5
     w = cols * dx
     parts.append(f'<line x1="{x0 - 4}" x2="{x0 + w}" y1="{last_close_y:.1f}" y2="{last_close_y:.1f}" stroke="{t["accent"]}" '
@@ -176,7 +187,7 @@ def hero(t, uid):
     for i, (k, v) in enumerate(chips):
         y = 322 + i * 24
         chip_svg.append(
-            f'<g opacity="0"><set attributeName="opacity" to="1" begin="{0.9 + i * 0.2:.1f}s" fill="freeze"/>'
+            f'<g>'
             f'<circle cx="70" cy="{y - 5}" r="3" fill="{t["accent"]}"/>'
             f'<text x="84" y="{y}" font-family="{SERIF}" font-size="14.5" fill="{t["muted"]}">'
             f'<tspan fill="{t["ink"]}" font-weight="bold">{k}</tspan>  {escape(v)}</text></g>')
@@ -228,19 +239,18 @@ def terminal(t, uid):
         y = top + i * step
         if kind == "cmd":
             w = len(text) * 8.6 + 30
-            defs.append(f'<clipPath id="cc{uid}{i}"><rect x="56" y="{y - 18}" height="26" width="0">'
-                        f'<animate attributeName="width" from="0" to="{w:.0f}" begin="{clock:.2f}s" dur="0.7s" fill="freeze" calcMode="discrete" '
-                        f'values="{";".join(str(round(w * k / 8)) for k in range(9))}" keyTimes="{";".join(f"{k / 9:.3f}" for k in range(9))}"/></rect></clipPath>')
+            defs.append(f'<clipPath id="cc{uid}{i}"><rect x="56" y="{y - 18}" height="26" width="{w:.0f}">'
+                        f'</rect></clipPath>')
             body.append(f'<g clip-path="url(#cc{uid}{i})"><text x="56" y="{y}" font-family="{MONO}" font-size="14.5" fill="{t["accent"]}">$ '
                         f'<tspan fill="{t["ink"]}">{escape(text)}</tspan></text></g>')
             clock += 0.9
         else:
-            body.append(f'<text x="78" y="{y}" font-family="{SERIF}" font-size="15.5" fill="{t["muted"]}" opacity="0">'
-                        f'{rich(text, t["ink"])}<set attributeName="opacity" to="1" begin="{clock:.2f}s" fill="freeze"/></text>')
+            body.append(f'<text x="78" y="{y}" font-family="{SERIF}" font-size="15.5" fill="{t["muted"]}">'
+                        f'{rich(text, t["ink"])}</text>')
             clock += 0.35
     end_y = top + len(TERM) * step
-    body.append(f'<text x="56" y="{end_y}" font-family="{MONO}" font-size="14.5" fill="{t["accent"]}" opacity="0">$ '
-                f'<tspan fill="{t["ink"]}">▍</tspan><set attributeName="opacity" to="1" begin="{clock:.2f}s" fill="freeze"/>'
+    body.append(f'<text x="56" y="{end_y}" font-family="{MONO}" font-size="14.5" fill="{t["accent"]}">$ '
+                f'<tspan fill="{t["ink"]}">▍</tspan>'
                 f'<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.1s" begin="{clock + 0.1:.2f}s" repeatCount="indefinite"/></text>')
     dots = "".join(f'<circle cx="{52 + k * 18}" cy="47" r="5.5" fill="{c}" fill-opacity="0.85"/>'
                    for k, c in enumerate(["#E5806B", "#E6BE5A", "#7DBE7A"]))
@@ -275,8 +285,7 @@ def projects(t, uid):
         cy = y0 + (i // 3) * (ch + gap)
         b = 0.2 + i * 0.12
         desc = "".join(f'<tspan x="{cx + 22}" dy="{0 if k == 0 else 20}">{escape(l)}</tspan>' for k, l in enumerate(lines))
-        cards.append(f"""<g opacity="0">
-    <set attributeName="opacity" to="1" begin="{b:.2f}s" fill="freeze"/>
+        cards.append(f"""<g>
     <animateTransform attributeName="transform" type="translate" values="0 10;0 0" begin="{b:.2f}s" dur="0.5s" fill="freeze"/>
     {glass(t, cx, cy, cw, ch, 14)}
     <text x="{cx + 22}" y="{cy + 34}" font-family="{MONO}" font-size="12.5" fill="{t['accent']}">0{i + 1}</text>
