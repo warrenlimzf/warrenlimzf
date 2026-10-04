@@ -1,30 +1,54 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
-  <img alt="Warren Lim, a finance student at NTU who builds his own research tools" src="assets/hero-light.svg" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/header-dark.svg">
+  <img alt="Warren Lim: finance student who builds his own research tools" src="assets/header-light.svg" width="100%">
 </picture>
 
-<p>
-  <a href="https://warrenlimzf.com"><img alt="Website" src="https://img.shields.io/badge/site-warrenlimzf.com-14213D?style=flat-square"></a>
-  <a href="https://linkedin.com/in/warrenlimzf/"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-warrenlimzf-A8843F?style=flat-square"></a>
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/neofetch-dark.svg">
+  <img alt="neofetch: ASCII portrait beside degree, track record, stack and contact" src="assets/neofetch-light.svg" width="100%">
+</picture>
 
 I study Banking and Finance at NTU and want to work in buy-side equity research. Code is how I test ideas instead of taking a narrative on faith: when the market started calling the end of SaaS, I built apps from scratch with Claude Code to see how hard the hard parts really are. (The front end was easy. The back end was not, which is roughly my view on ServiceNow.)
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/terminal-dark.svg">
-  <img alt="whoami: track record and focus" src="assets/terminal-light.svg" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/warrenlimzf/warrenlimzf/output/snake-dark.svg">
+  <img alt="Contribution graph eaten by a snake" src="https://raw.githubusercontent.com/warrenlimzf/warrenlimzf/output/snake-light.svg" width="100%">
 </picture>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/projects-dark.svg">
-  <img alt="Six projects: macro research site, market dashboard, trading journal, VCP strategy desk, bank NAV automation, web design skill" src="assets/projects-light.svg" width="100%">
+  <img alt="ls ~/projects: macro research, market dashboard, trading journal, VCP strategy desk, bank NAV automation, web design skill" src="assets/projects-light.svg" width="100%">
 </picture>
 
-### Open source
+```console
+warren@github:~$ ./links.sh
+```
+
+<p>
+  <a href="https://warrenlimzf.com"><img alt="Website" src="https://img.shields.io/badge/web-warrenlimzf.com-3FB950?style=for-the-badge&logo=googlechrome&logoColor=white&labelColor=0D1117"></a>
+  <a href="https://linkedin.com/in/warrenlimzf/"><img alt="LinkedIn" src="https://img.shields.io/badge/linkedin-warrenlimzf-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0D1117"></a>
+  <a href="https://github.com/warrenlimzf?tab=repositories"><img alt="Repositories" src="https://img.shields.io/badge/github-repos-BC8CFF?style=for-the-badge&logo=github&logoColor=white&labelColor=0D1117"></a>
+</p>
+
+```console
+warren@github:~$ cat stack.txt
+```
+
+<p>
+  <a href="https://www.python.org"><img alt="Python" src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"></a>
+  <a href="https://www.typescriptlang.org"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"></a>
+  <a href="https://nextjs.org"><img alt="Next.js" src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"></a>
+  <a href="https://vercel.com"><img alt="Vercel" src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"></a>
+  <a href="https://learn.microsoft.com/office/vba/api/overview/excel"><img alt="Excel VBA" src="https://img.shields.io/badge/Excel_VBA-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white"></a>
+  <a href="https://www.microsoft.com/power-platform/products/power-automate"><img alt="Power Automate" src="https://img.shields.io/badge/Power_Automate-0066FF?style=for-the-badge&logo=powerautomate&logoColor=white"></a>
+  <a href="https://www.claude.com/product/claude-code"><img alt="Claude Code" src="https://img.shields.io/badge/Claude_Code-D97757?style=for-the-badge&logo=claude&logoColor=white"></a>
+</p>
+
+```console
+warren@github:~$ ls ~/open-source
+```
 
 - [**pinnacle-invoice-automation**](https://github.com/warrenlimzf/pinnacle-invoice-automation): drop a private-bank statement PDF (LGT, Bank of Singapore, UBS) into a folder and get the NAV figures in Excel, each backed by a screenshot of where it came from. Runs fully on your own machine.
 - [**pinnacle-invoice-automation-api**](https://github.com/warrenlimzf/pinnacle-invoice-automation-api): the same tool, reading scanned pages through an API in seconds instead of minutes.
 
-**Tools I use most:** Python, TypeScript, Next.js, Excel VBA, Power Automate, Bloomberg, S&P Capital IQ, Claude Code.
-
-<sub>The cards above are animated SVGs generated by <code>build.py</code> and switch with your GitHub light or dark theme.</sub>
+<sub>Cards are SVGs generated by <code>build.py</code> (the portrait is ASCII from my headshot) and follow your GitHub light or dark theme. The snake redraws daily from my contribution graph.</sub>
